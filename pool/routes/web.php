@@ -9,6 +9,7 @@ use App\Livewire\Admin\ClientesAdmin;
 use App\Livewire\Admin\UsuariosAdmin;
 use App\Livewire\Cajero\ClientesCajero;
 use App\Livewire\Cajero\DashboardCajero;
+use App\Livewire\Cajero\InventarioCajero;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('dashboard_cajero', DashboardCajero::class)->name('dashboard_cajero');
+    Route::get('inventario_cajero', InventarioCajero::class)->name('inventario_cajero');
     Route::get('clientes_cajero', ClientesCajero::class)->name('clientes_cajero');
 });
 

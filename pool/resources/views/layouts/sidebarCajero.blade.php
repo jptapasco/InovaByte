@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="nav-item py-2">
-                        <a href="/#" class="nav-link text-light fs-5">
+                        <a href="/inventario_cajero" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-boxes-stacked me-3"></i>
                                 <span class="d-none d-xl-inline"><span>Inventario</span></span>

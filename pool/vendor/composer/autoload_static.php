@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
+class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -584,22 +584,19 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Kernel' => __DIR__ . '/..' . '/laravel/pint/app/Kernel.php',
-        'App\\Livewire\\Admin\\ClientesAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/ClientesAdmin.php',
-        'App\\Livewire\\Admin\\DashboardAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/DashboardAdmin.php',
-        'App\\Livewire\\Admin\\InventarioAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/InventarioAdmin.php',
-        'App\\Livewire\\Admin\\RegistroVentasAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/RegistroVentasAdmin.php',
-        'App\\Livewire\\Admin\\UsuariosAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/UsuariosAdmin.php',
-        'App\\Livewire\\Cajero\\ClientesCajero' => __DIR__ . '/../..' . '/app/Livewire/Cajero/ClientesCajero.php',
-        'App\\Livewire\\Cajero\\DashboardCajero' => __DIR__ . '/../..' . '/app/Livewire/Cajero/DashboardCajero.php',
+        'App\\Livewire\\DashboardAdmin' => __DIR__ . '/../..' . '/app/Livewire/DashboardAdmin.php',
+        'App\\Models\\Asignaciones' => __DIR__ . '/../..' . '/app/Models/Asignaciones.php',
         'App\\Models\\Clientes' => __DIR__ . '/../..' . '/app/Models/Clientes.php',
-        'App\\Models\\FacturaDetalles' => __DIR__ . '/../..' . '/app/Models/FacturaDetalles.php',
+        'App\\Models\\Consumos' => __DIR__ . '/../..' . '/app/Models/Consumos.php',
+        'App\\Models\\EmpleadoObservaciones' => __DIR__ . '/../..' . '/app/Models/EmpleadoObservaciones.php',
+        'App\\Models\\FacturaJuegos' => __DIR__ . '/../..' . '/app/Models/FacturaJuegos.php',
+        'App\\Models\\FacturaNormales' => __DIR__ . '/../..' . '/app/Models/FacturaNormales.php',
         'App\\Models\\Facturas' => __DIR__ . '/../..' . '/app/Models/Facturas.php',
+        'App\\Models\\Juegos' => __DIR__ . '/../..' . '/app/Models/Juegos.php',
         'App\\Models\\Mesas' => __DIR__ . '/../..' . '/app/Models/Mesas.php',
         'App\\Models\\PlataCajeros' => __DIR__ . '/../..' . '/app/Models/PlataCajeros.php',
         'App\\Models\\Productos' => __DIR__ . '/../..' . '/app/Models/Productos.php',
-        'App\\Models\\TipoMesas' => __DIR__ . '/../..' . '/app/Models/TipoMesas.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
-        'App\\Models\\UsuarioObservaciones' => __DIR__ . '/../..' . '/app/Models/UsuarioObservaciones.php',
         'App\\Output\\Concerns\\InteractsWithSymbols' => __DIR__ . '/..' . '/laravel/pint/app/Output/Concerns/InteractsWithSymbols.php',
         'App\\Output\\ProgressOutput' => __DIR__ . '/..' . '/laravel/pint/app/Output/ProgressOutput.php',
         'App\\Output\\SummaryOutput' => __DIR__ . '/..' . '/laravel/pint/app/Output/SummaryOutput.php',
@@ -774,16 +771,19 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
+        'Database\\Seeders\\AsignacionesSeeder' => __DIR__ . '/../..' . '/database/seeders/AsignacionesSeeder.php',
         'Database\\Seeders\\ClientesSeeder' => __DIR__ . '/../..' . '/database/seeders/ClientesSeeder.php',
+        'Database\\Seeders\\ConsumosSeeder' => __DIR__ . '/../..' . '/database/seeders/ConsumosSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
-        'Database\\Seeders\\FacturaDetallesSeeder' => __DIR__ . '/../..' . '/database/seeders/FacturaDetallesSeeder.php',
+        'Database\\Seeders\\EmpleadoObservaciones' => __DIR__ . '/../..' . '/database/seeders/EmpleadoObservaciones.php',
+        'Database\\Seeders\\FacturaJuegosSeeder' => __DIR__ . '/../..' . '/database/seeders/FacturaJuegosSeeder.php',
+        'Database\\Seeders\\FacturaNormalesSeeder' => __DIR__ . '/../..' . '/database/seeders/FacturaNormalesSeeder.php',
         'Database\\Seeders\\FacturasSeeder' => __DIR__ . '/../..' . '/database/seeders/FacturasSeeder.php',
+        'Database\\Seeders\\JuegosSeeder' => __DIR__ . '/../..' . '/database/seeders/JuegosSeeder.php',
         'Database\\Seeders\\MesasSeeder' => __DIR__ . '/../..' . '/database/seeders/MesasSeeder.php',
         'Database\\Seeders\\PlataCajeros' => __DIR__ . '/../..' . '/database/seeders/PlataCajeros.php',
         'Database\\Seeders\\ProductosSeeder' => __DIR__ . '/../..' . '/database/seeders/ProductosSeeder.php',
-        'Database\\Seeders\\TipoMesasSeeder' => __DIR__ . '/../..' . '/database/seeders/TipoMesasSeeder.php',
         'Database\\Seeders\\UsersSeeder' => __DIR__ . '/../..' . '/database/seeders/UsersSeeder.php',
-        'Database\\Seeders\\UsuarioObservaciones' => __DIR__ . '/../..' . '/database/seeders/UsuarioObservaciones.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -7198,9 +7198,9 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9c491b8531eec05ba41a11d9276a5749::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9c491b8531eec05ba41a11d9276a5749::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9c491b8531eec05ba41a11d9276a5749::$classMap;
 
         }, null, ClassLoader::class);
     }
