@@ -1,19 +1,22 @@
-<x-modal title="Ver horas de  {{ $documento_cliente }}" id="modalVerHoras" type="edit">
+<x-modal title="Ver horas de " id="modalVerHoras">
 
     <div class="card border-success-subtle mb-2">
         <div class="card-body text-success">
 
-            <div class="card border-success-subtle mb-2">
-                <div class="card-body text-success">
-                    <p class="card-text">{{ $datos_factura->hora_inicio }}</p>
-                </div>
+            <div class="card border-success-subtle mb-2 text-center">
                 <ul class="list-group list-group-flush">
                     <div class="card-body text-success row">
-                        <div class="col-9">
-                            <p class="card-text">{{ $datos_factura->hora_fin }}</p>
+                        <div class="col">
+                            <h5 class="fw-bold">Hora inicio: </h5>
+                            <p>{{ $hora_inicio_factura }}</p>
                         </div>
-                        <div class="col-2 ms-3">
-                            <button class="btn btn-sm btn-outline-success" wire:click='deleteObservacion({{$detalle_empleado->id}})'>Eliminar</button>
+                    </div>
+                </ul>
+                <ul class="list-group list-group-flush">
+                    <div class="card-body text-success row">
+                    <div class="col">
+                            <h5 class="fw-bold">Hora fin: </h5>
+                            <p>{{ $hora_fin_factura }}</p>
                         </div>
                     </div>
                 </ul>

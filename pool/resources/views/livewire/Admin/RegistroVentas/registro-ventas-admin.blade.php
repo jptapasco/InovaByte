@@ -41,7 +41,7 @@
                                     <td><button type="button" class="btn btn-success disabled">Ver Horas</button></td>
                                 @else
                                     <td><button type="button" class="btn btn-success"
-                                            wire:click='verHoras({{ $factura->id }}, 2)'>Ver Horas</button>
+                                            wire:click='actualizarIdFactura({{ $factura->id }}, 1)'>Ver Horas</button>
                                     </td>
                                 @endif
                                 <td><button type="button" class="btn btn-success"
@@ -58,15 +58,7 @@
             document.addEventListener('livewire:initialized', function() {
                 const modalVerHoras = new bootstrap.Modal('#modalVerHoras');
 
-                @this.on('show-modal', msg => {
-                    modalVerHoras.show();
-                });
-                @this.on('show-modal-add-obs', msg => {
-                    modalAddDetalles.show();
-                    modalVerHoras.hide();
-                });
-                @this.on('close-modal-add-obs', msg => {
-                    modalAddDetalles.hide();
+                @this.on('show-modal-ver-horas', msg => {
                     modalVerHoras.show();
                 });
 

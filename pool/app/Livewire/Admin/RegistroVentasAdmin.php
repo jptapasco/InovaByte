@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class RegistroVentasAdmin extends Component
 {
-    public $usuario_actual, $facturas, $id_factura, $datos_factura;
+    public $usuario_actual, $facturas, $id_factura, $datos_factura, $documento_cliente_factura, $hora_inicio_factura, $hora_fin_factura;
     public function mount()
     {
         $this->usuario_actual = Auth::user();
@@ -31,13 +31,22 @@ class RegistroVentasAdmin extends Component
         
         return view('livewire.Admin.RegistroVentas.registro-ventas-admin')->extends('layouts.app')->section('content');
     }
-    public function actualizarIdProducto($id, $opc)
+    public function actualizarIdFactura($id, $opc)
     {
         if ($opc == 1) {
             $this->datos_factura = Facturas::find($id);
+            $this->documento_cliente_factura = $this->datos_factura->documento_cliente;
             $this->hora_inicio_factura = $this->datos_factura->hora_inicio;
             $this->hora_fin_factura = $this->datos_factura->hora_fin;
-            $this->dispatch('show-modal-ver-horas-producto');
+            $this->dispatch('show-modal-ver-horas');
         }
     }
+    public function resetUI()
+    {
+        $this->resetValidation();
+        $this->datos_factura = null;
+        $this->documento_cliente_factura = null;
+        $this->hora_inicio_factura = null;
+        $this->hora_fin_factura = null;
+     }
 }
