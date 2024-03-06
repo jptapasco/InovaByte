@@ -51,10 +51,26 @@
                     @endif
                 </tbody>
             </table>
-            <x-modal-confirmacion id="modalConfirmacionEliminar" funcion="eliminarUsuario">Desea realmente eliminar este
-                usuario?</x-modal-confirmacion>
-            <x-modal-confirmacion id="modalConfirmacionActivar" funcion="activarUsuario">Desea realmente activar este
-                usuario?</x-modal-confirmacion>
         </div>
+        @include('livewire.Admin.RegistroVentas.modal-ver-horas-admin')
+
+        <script>
+            document.addEventListener('livewire:initialized', function() {
+                const modalVerHoras = new bootstrap.Modal('#modalVerHoras');
+
+                @this.on('show-modal', msg => {
+                    modalVerHoras.show();
+                });
+                @this.on('show-modal-add-obs', msg => {
+                    modalAddDetalles.show();
+                    modalVerHoras.hide();
+                });
+                @this.on('close-modal-add-obs', msg => {
+                    modalAddDetalles.hide();
+                    modalVerHoras.show();
+                });
+
+            });
+        </script>
     </div>
 </div>

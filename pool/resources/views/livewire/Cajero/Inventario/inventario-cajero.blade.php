@@ -3,7 +3,6 @@
         <h1 class="text-success">Productos</h1>
         <div class="d-sm-flex align-items-left justify-content-between mb-4">
             <button wire:click="abrirModalCrear" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i> Agregar</button>
-            <button wire:click="abrirModalAgregar" type="button" class="btn btn-success">add</button>
             <div class="input-group" style="width: 75%">
                 <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
                 <button class="btn btn-outline-success" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -52,12 +51,10 @@
         </div>
         @include('livewire.Admin.Inventario.modal-editar-producto-admin')
         @include('livewire.Admin.Inventario.modal-crear-producto-admin')
-        @include('livewire.Cajero.Inventario.modal-agregar-inventario')
         <script>
             document.addEventListener('livewire:initialized', function() {
                 const modalEditarProducto = new bootstrap.Modal('#modalEditarProducto');
                 const modalCrearProducto = new bootstrap.Modal('#modalCrearProducto');
-                const modalAgregarInventario = new bootstrap.Modal('#modalAgregarInventario');
 
                 @this.on('show-modal-agregar-inventario', msg => {
                     console.log("agregar");
@@ -67,7 +64,6 @@
                     modalEditarProducto.hide();
                 });
                 @this.on('show-modal-editar-producto', msg => {
-                    console.log("oa");
                     modalEditarProducto.show();
                 });
                 @this.on('hide-modal-editar-producto', msg => {

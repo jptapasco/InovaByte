@@ -15,7 +15,9 @@ class RegistroVentasAdmin extends Component
     }
     public function render()
     {
-        if ($this->usuario_actual->rol != 'admin') {
+        if($this->usuario_actual == null){
+            return abort('403');
+        }else if ($this->usuario_actual->rol != 'admin') {
             return abort('403');
         }
         $this->facturas = Facturas::select(
@@ -28,5 +30,14 @@ class RegistroVentasAdmin extends Component
             ->get();
         
         return view('livewire.Admin.RegistroVentas.registro-ventas-admin')->extends('layouts.app')->section('content');
+    }
+    public function actualizarIdProducto($id, $opc)
+    {
+        if ($opc == 1) {
+            $this->datos_factura = Facturas::find($id);
+            $this->hora_inicio_factura = $this->datos_factura->hora_inicio;
+            $this->hora_fin_factura = $this->datos_factura->hora_fin;
+            $this->dispatch('show-modal-ver-horas-producto');
+        }
     }
 }

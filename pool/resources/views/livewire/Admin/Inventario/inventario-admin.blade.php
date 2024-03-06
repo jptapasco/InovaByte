@@ -59,7 +59,6 @@
                 const modalCrearProducto = new bootstrap.Modal('#modalCrearProducto');
 
                 @this.on('show-modal-editar-producto', msg => {
-                    console.log("oa");
                     modalEditarProducto.show();
                 });
                 @this.on('hide-modal-editar-producto', msg => {

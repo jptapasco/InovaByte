@@ -20,10 +20,12 @@ class DashboardAdmin extends Component
     }
     public function render()
     {
-        $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
-        if ($this->usuario_actual->rol != 'admin') {
+        if($this->usuario_actual == null){
+            return abort('403');
+        }else if ($this->usuario_actual->rol != 'admin') {
             return abort('403');
         }
+        $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
         $this->empleados = User::where('rol', '!=', 'admin')->when($strSearch, function ($query, $strSearch) {
             return $query->where(
                 function ($query) use ($strSearch) {
