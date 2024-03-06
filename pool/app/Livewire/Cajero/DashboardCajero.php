@@ -36,13 +36,30 @@ class DashboardCajero extends Component
 
     public function agregarProducto($productoId)
     {
-        $producto = Productos::findOrFail($productoId);
-        $producto->cantidad_a_llevar = 1;
-        $this->productosSeleccionados[] = [
-            'producto' => $producto,
-            'cantidad_a_llevar' => 1,
-        ];
+        $productoExistenteIndex = null;
+
+        // Buscar si el producto ya existe en la lista
+        foreach ($this->productosSeleccionados as $index => $item) {
+            if ($item['producto']->id == $productoId) {
+                $productoExistenteIndex = $index;
+                break;
+            }
+        }
+
+        if ($productoExistenteIndex !== null) {
+            // Si el producto ya existe, aumentar la cantidad
+            $this->aumentarCantidad($productoExistenteIndex);
+        } else {
+            // Si el producto no existe, agregarlo a la lista
+            $producto = Productos::findOrFail($productoId);
+            $producto->cantidad_a_llevar = 1;
+            $this->productosSeleccionados[] = [
+                'producto' => $producto,
+                'cantidad_a_llevar' => 1,
+            ];
+        }
     }
+
 
     public function aumentarCantidad($index)
     {
@@ -70,6 +87,11 @@ class DashboardCajero extends Component
         }
     }
 
+    public function eliminarFila($index)
+    {
+        unset($this->productosSeleccionados[$index]);
+    }
+
     public function facturar()
     {
         $productosSeleccionados = $this->productosSeleccionados;
@@ -80,7 +102,6 @@ class DashboardCajero extends Component
 
     public function vistaFacturar()
     {
-       
         return redirect()->route('factura');
     }
 

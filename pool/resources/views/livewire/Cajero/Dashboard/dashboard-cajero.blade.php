@@ -31,16 +31,17 @@
         <!-- Mostrar tabla de productos seleccionados -->
         <h1 class="text-success">Productos seleccionados</h1>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <table class="table table-bordered table-success border-success">
+            <table class="table table-bordered table-success border-success text-center">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Cantidad Disponible</th>
                         <th>Cantidad a llevar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($productosSeleccionados as $index => $item)
                     <tr>
                         <td>{{ $item['producto']->nombre }}</td>
@@ -52,6 +53,9 @@
                                 <span class="form-control text-center">{{ $item['cantidad_a_llevar'] }}</span>
                                 <button wire:click="aumentarCantidad({{ $index }})" class="btn btn-success" type="button">+</button>
                             </div>
+                        </td>
+                        <td>
+                            <button wire:click="eliminarFila({{ $index }})" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                     @endforeach
@@ -68,7 +72,5 @@
             <button class="btn btn-success mb-5 disabled btn-lg">Facturar</button>
         </div>    
         @endif
-        
-
     </div>
 </div>

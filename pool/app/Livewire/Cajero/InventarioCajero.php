@@ -17,7 +17,9 @@ class InventarioCajero extends Component
     public function render()
     {
         $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
-        if ($this->usuario_actual->rol != 'cajero') {
+        if($this->usuario_actual == null){
+            return abort('403');
+        }else if ($this->usuario_actual->rol != 'cajero') {
             return abort('403');
         }
         $this->productos = Productos::when($strSearch, function ($query, $strSearch) {

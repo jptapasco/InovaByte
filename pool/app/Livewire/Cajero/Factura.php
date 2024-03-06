@@ -16,7 +16,9 @@ class Factura extends Component
 
     public function render()
     {
-        if ($this->usuario_actual->rol != 'cajero') {
+        if($this->usuario_actual == null){
+            return abort('403');
+        }else if ($this->usuario_actual->rol != 'cajero') {
             return abort('403');
         }
         $this->productosSeleccionados = session()->get('productos_seleccionados', []);

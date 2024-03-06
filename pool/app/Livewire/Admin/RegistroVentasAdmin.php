@@ -15,7 +15,9 @@ class RegistroVentasAdmin extends Component
     }
     public function render()
     {
-        if ($this->usuario_actual->rol != 'admin') {
+        if($this->usuario_actual == null){
+            return abort('403');
+        }else if ($this->usuario_actual->rol != 'admin') {
             return abort('403');
         }
         $this->facturas = Facturas::select(
