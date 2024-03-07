@@ -53,7 +53,7 @@ class Factura extends Component
     public function generarFactura()
     {
         $factura = Facturas::create([
-            'id_mesa' => 1,
+            'id_mesa' => 4,
             'id_cliente' => 6,
             'id_vendedor' => $this->usuario_actual->id,
             'total' => $this->total,
