@@ -53,13 +53,19 @@
             </table>
         </div>
         @include('livewire.Admin.RegistroVentas.modal-ver-horas-admin')
+        @include('livewire.Admin.RegistroVentas.modal-ver-detalles-admin')
 
         <script>
             document.addEventListener('livewire:initialized', function() {
                 const modalVerHoras = new bootstrap.Modal('#modalVerHoras');
+                const modalVerDetalles = new bootstrap.Modal('#modalVerDetalles');
 
                 @this.on('show-modal-ver-horas', msg => {
                     modalVerHoras.show();
+                });
+
+                @this.on('show-modal-ver-detalles', msg => {
+                    modalVerDetalles.show();
                 });
 
             });

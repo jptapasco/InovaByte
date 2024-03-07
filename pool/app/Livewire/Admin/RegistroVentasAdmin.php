@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class RegistroVentasAdmin extends Component
 {
-    public $usuario_actual, $facturas, $id_factura, $datos_factura ,$nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $desde, $hasta;
+    public $usuario_actual, $facturas, $id_factura, $datos_factura, $detalles_productos, $detalles_factura_detalles ,$nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $desde, $hasta, $cantidades_productos, $subtotales_productos;
     public function mount()
     {
         $this->usuario_actual = Auth::user();
@@ -26,7 +26,7 @@ class RegistroVentasAdmin extends Component
 
         $desde = $this->desde ? $this->desde:null;
         $hasta = $this->hasta ? $this->hasta:null;
-
+        
         $this->facturas = Facturas::select(
             'facturas.*',
             'users.nombres as nombres_vendedor',
@@ -48,6 +48,7 @@ class RegistroVentasAdmin extends Component
                     }
                 );
             })
+            ->orderBy('created_at', 'desc')
             ->get();
         
         return view('livewire.Admin.RegistroVentas.registro-ventas-admin')->extends('layouts.app')->section('content');
@@ -63,12 +64,18 @@ class RegistroVentasAdmin extends Component
             $this->dispatch('show-modal-ver-horas');
         }else if($opc == 2) {
             $this->datos_factura = Facturas::find($id);
+            $datos_cliente = Clientes::find($this->datos_factura->id_cliente);
+            $this->nombre_cliente_factura = $datos_cliente->nombres;
             $detalles_factura = FacturaDetalles::where('id_factura', $id)->get();
+            $this->detalles_productos = [];
             foreach ($detalles_factura as $detalle_factura) {
                 $id_producto = $detalle_factura->id_producto;
-                $detalles_producto = Productos::where('id', $id_producto)->get();
-                dump($detalles_producto);
+                $detalles_producto = Productos::find($id_producto);
+                $this->detalles_productos[] = $detalles_producto;
+                $this->cantidades_productos[] = $detalle_factura->cantidad;
+                $this->subtotales_productos[] = $detalle_factura->subtotal;
             }
+            $this->dispatch('show-modal-ver-detalles');
         }
 
     }
