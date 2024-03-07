@@ -45,7 +45,7 @@
                                     </td>
                                 @endif
                                 <td><button type="button" class="btn btn-success"
-                                        wire:click='verDetalles({{ $factura->id }})'>Detalles</button></td>
+                                        wire:click='actualizarIdFactura({{ $factura->id }}, 2)'>Detalles</button></td>
                             </tr>
                         @endforeach
                     @endif
