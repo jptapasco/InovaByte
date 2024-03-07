@@ -4,13 +4,13 @@
         <div class="d-sm-flex align-items-left justify-content-left mb-4 mt-2">
             <div class="input-group" style="width: 28%">
                 <h4 class="mt-1 me-1">Desde:</h4>
-                <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="desde">
             </div>
             <div class="input-group me-3" style="width: 28%">
                 <h4 class="mt-1 me-1">Hasta:</h4>
-                <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="hasta">
             </div>
-            <button wire:click="abrirModalCrear" type="button" class="btn btn-success"><i class="fa-solid fa-filter"></i> Filtrar</button>
+            <button type="button" class="btn btn-success"><i class="fa-solid fa-filter"></i> Filtrar</button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <table class="table table-bordered table-success border-success">

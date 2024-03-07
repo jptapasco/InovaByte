@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Clientes;
 use App\Models\Facturas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class RegistroVentasAdmin extends Component
 {
-    public $usuario_actual, $facturas, $id_factura, $datos_factura, $documento_cliente_factura, $hora_inicio_factura, $hora_fin_factura;
+    public $usuario_actual, $facturas, $id_factura, $datos_factura, $nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $desde, $hasta;
     public function mount()
     {
         $this->usuario_actual = Auth::user();
@@ -20,6 +21,10 @@ class RegistroVentasAdmin extends Component
         }else if ($this->usuario_actual->rol != 'admin') {
             return abort('403');
         }
+
+        $desde = $this->desde ? $this->desde:null;
+        $hasta = $this->hasta ? $this->hasta:null;
+
         $this->facturas = Facturas::select(
             'facturas.*',
             'users.nombres as nombres_vendedor',
@@ -27,6 +32,20 @@ class RegistroVentasAdmin extends Component
         )
             ->join('users', 'users.id', 'facturas.id_vendedor')
             ->join('clientes', 'clientes.id', 'facturas.id_cliente')
+            ->when($desde, function ($query, $desde) {
+                return $query->where(
+                    function ($query) use ($desde) {
+                        $query->where('facturas.created_at', '>=', $desde);
+                    }
+                );
+            })
+            ->when($hasta, function ($query, $hasta) {
+                return $query->where(
+                    function ($query) use ($hasta) {
+                        $query->where('facturas.created_at', '<=', $hasta);
+                    }
+                );
+            })
             ->get();
         
         return view('livewire.Admin.RegistroVentas.registro-ventas-admin')->extends('layouts.app')->section('content');
@@ -35,7 +54,8 @@ class RegistroVentasAdmin extends Component
     {
         if ($opc == 1) {
             $this->datos_factura = Facturas::find($id);
-            $this->documento_cliente_factura = $this->datos_factura->documento_cliente;
+            $datos_cliente = Clientes::find($this->datos_factura->id_cliente);
+            $this->nombre_cliente_factura = $datos_cliente->nombres;
             $this->hora_inicio_factura = $this->datos_factura->hora_inicio;
             $this->hora_fin_factura = $this->datos_factura->hora_fin;
             $this->dispatch('show-modal-ver-horas');
@@ -45,8 +65,8 @@ class RegistroVentasAdmin extends Component
     {
         $this->resetValidation();
         $this->datos_factura = null;
-        $this->documento_cliente_factura = null;
+        $this->nombre_cliente_factura = null;
         $this->hora_inicio_factura = null;
         $this->hora_fin_factura = null;
-     }
+    }
 }
