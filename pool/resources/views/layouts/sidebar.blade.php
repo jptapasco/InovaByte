@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li class="nav-item py-2">
-                        <a href="/#" class="nav-link text-light fs-5">
+                        <a href="/" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-table me-3"></i>
                                 <span class="d-none d-xl-inline">Mesas</span>
@@ -92,7 +92,7 @@
                         </a>
                     </li>
                     <li class="nav-item py-2">
-                        <a href="/#" class="nav-link text-light fs-5">
+                        <a href="/meseras_cajero" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa-sharp fa-solid fa-users me-3"></i>
                                 <span class="d-none d-xl-inline">Meseras</span>
