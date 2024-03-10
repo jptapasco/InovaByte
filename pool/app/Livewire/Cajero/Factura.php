@@ -10,10 +10,7 @@ use Carbon\Carbon;
 
 class Factura extends Component
 {
-    public $usuario_actual, $productosSeleccionados;
-    public $dineroRecibido;
-    public $total;
-    public $vueltoCalculado;
+    public $usuario_actual, $productosSeleccionados, $dineroRecibido, $total, $vueltoCalculado;
 
     public function mount()
     {
@@ -76,5 +73,4 @@ class Factura extends Component
             ]);
         }
     }
-
 }
