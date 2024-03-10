@@ -55,7 +55,7 @@
             <x-modal-confirmacion id="modalConfirmacionEliminar" funcion="eliminarCliente">Desea realmente eliminar este cliente?</x-modal-confirmacion>
             <x-modal-confirmacion id="modalConfirmacionActivar" funcion="activarCliente">Desea realmente activar este cliente?</x-modal-confirmacion>
         </div>
-        @include('livewire.Admin.Clientes.modal-editar-cliente-admin')
+        @include('livewire.Admin.Clientes.modal-editar-cliente-admin') 
         @include('livewire.Admin.Clientes.modal-crear-cliente-admin')
 
 

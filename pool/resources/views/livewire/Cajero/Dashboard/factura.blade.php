@@ -56,9 +56,21 @@
         @endif        
                       
         <div class="text-center mt-5">
-            <button class="btn btn-danger btn-lg mx-3" style="width: 200px;">Cancelar</button>
-            <button wire:click="generarFactura" class="btn btn-success btn-lg mx-3" style="width: 200px;">Confirmar</button>
+            <button id="confirmarButton" wire:click="generarFactura" class="btn btn-success btn-lg mx-3" style="width: 200px;">Confirmar</button>
         </div>        
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+       document.getElementById('confirmarButton').addEventListener('click', function () {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Factura creada Exitosamente",
+                showConfirmButton: false,
+                timer: 1500
+            }).then(function () {
+                window.location.href = "{{ route('resumen') }}";
+            });
+        });
+    </script>
 </div>
