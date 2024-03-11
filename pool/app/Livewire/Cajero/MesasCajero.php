@@ -62,7 +62,7 @@ class MesasCajero extends Component
                     $this->redirectRoute('mesas_cajero');
                 }
             } catch (ModelNotFoundException $exception ) {
-                session()->flash('error', 'La mesera no fue encontrada.', $exception);
+                session()->flash('error', 'La mesera no fue encontrada.');
                 redirect()->route('mesas_cajero');
             }
         } else {
@@ -80,7 +80,7 @@ class MesasCajero extends Component
             $mesa->save();
             $this->redirectRoute('mesas_cajero');
         } catch (ModelNotFoundException $exception ) {
-            session()->flash('error', 'La mesa no fue encontrada.', $exception);
+            session()->flash('error', 'La mesa no fue encontrada.');
             redirect()->route('mesas_cajero');
         }
     }

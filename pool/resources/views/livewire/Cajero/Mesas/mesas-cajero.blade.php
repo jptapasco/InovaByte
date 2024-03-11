@@ -53,10 +53,10 @@
                             @endif
                         </div>
                     </div>
-                    <x-modal-confirmacion id="modalConfirmarAsignacion" funcion="asignarMesera({{ $mesa->id }})">Desea agregar una mesera?</x-modal-confirmacion>
+                    <x-modal-confirmacion id="modalConfirmarAsignacion" funcion="asignarMesera({{ $mesa->id }})">Desea asignar una mesera?</x-modal-confirmacion>
                     <x-modal-confirmacion id="modalConfirmarCambioMesera" funcion="asignarMesera({{ $mesa->id }})">Desea cambiar la mesera?</x-modal-confirmacion>
                 </div>
-                @empty
+                @empty 
                     <h2 class="text-warning border-bottom border-danger"  style="width: 400px">No hay mesas disponibles.</h2>
                 @endforelse
             </div>
