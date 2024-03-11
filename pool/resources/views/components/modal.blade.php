@@ -51,6 +51,10 @@
                     <x-primary-button wire:click='{{$function}}'>
                         {{$button}}
                     </x-primary-button>
+                    @elseif ($type == 'editCantidad')
+                    <x-primary-button iconL='fa-solid fa-rotate' wire:click='updateCantidad'>
+                        Actualizar
+                    </x-primary-button>
                     @endif
                 </div>
             </div>

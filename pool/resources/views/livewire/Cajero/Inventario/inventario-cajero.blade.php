@@ -3,7 +3,6 @@
         <h1 class="text-success">Productos</h1>
         <div class="d-sm-flex align-items-left justify-content-between mb-4">
             <button wire:click="abrirModalCrear" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i> Agregar</button>
-            <button wire:click="abrirModalAgregar" type="button" class="btn btn-success">add</button>
             <div class="input-group" style="width: 75%">
                 <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
                 <button class="btn btn-outline-success" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -22,7 +21,8 @@
                         <th scope="col">Precio Venta</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Punto Reorden</th>
-                        <th scope="col">Opciones</th>
+                        <th scope="col">Agregar Cantidad</th>
+                        <th scope="col">Editar Productos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +43,8 @@
                                 <td>{{ $producto->cantidad }}</td>
                                 <td>{{ $producto->punto_reorden }}</td>
                                 <td><button type="button" class="btn btn-success"
+                                    wire:click='actualizarCantidadProducto({{ $producto->id }}, 1)'><i class="fa-solid fa-plus"></i></button></td>
+                                <td><button type="button" class="btn btn-success"
                                     wire:click='actualizarIdProducto({{ $producto->id }}, 1)'>Editar</button></td>
                             </tr>
                         @endforeach
@@ -52,22 +54,14 @@
         </div>
         @include('livewire.Admin.Inventario.modal-editar-producto-admin')
         @include('livewire.Admin.Inventario.modal-crear-producto-admin')
-        @include('livewire.Cajero.Inventario.modal-agregar-inventario')
+        @include('livewire.Cajero.Inventario.modal-agregar-cantidad')
         <script>
             document.addEventListener('livewire:initialized', function() {
                 const modalEditarProducto = new bootstrap.Modal('#modalEditarProducto');
                 const modalCrearProducto = new bootstrap.Modal('#modalCrearProducto');
-                const modalAgregarInventario = new bootstrap.Modal('#modalAgregarInventario');
+                const modalAgregarCantidad = new bootstrap.Modal('#modalAgregarCantidad');
 
-                @this.on('show-modal-agregar-inventario', msg => {
-                    console.log("agregar");
-                    modalEditarProducto.show();
-                });
-                @this.on('hide-modal-agregar-inventario', msg => {
-                    modalEditarProducto.hide();
-                });
                 @this.on('show-modal-editar-producto', msg => {
-                    console.log("oa");
                     modalEditarProducto.show();
                 });
                 @this.on('hide-modal-editar-producto', msg => {
@@ -79,6 +73,13 @@
                 });
                 @this.on('hide-modal-crear-producto', msg => {
                     modalCrearProducto.hide();
+                });
+
+                @this.on('show-modal-agregar-cantidad', msg => {
+                    modalAgregarCantidad.show();
+                });
+                @this.on('hide-modal-agregar-cantidad', msg => {
+                    modalAgregarCantidad.hide();
                 });
 
             });

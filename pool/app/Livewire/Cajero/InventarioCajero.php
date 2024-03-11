@@ -9,19 +9,19 @@ use Livewire\Component;
 
 class InventarioCajero extends Component
 {
-    public $usuario_actual, $productos, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
+    public $usuario_actual, $productos, $cantidad_agregada, $cantidad_agregada_total, $cantidad_producto_actual, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
     public function mount()
     {
         $this->usuario_actual = Auth::user();
     }
     public function render()
     {
-        $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
         if($this->usuario_actual == null){
             return abort('403');
         }else if ($this->usuario_actual->rol != 'cajero') {
             return abort('403');
         }
+        $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
         $this->productos = Productos::when($strSearch, function ($query, $strSearch) {
             return $query->where(
                 function ($query) use ($strSearch) {
@@ -58,7 +58,6 @@ class InventarioCajero extends Component
             'punto_reorden_producto.numeric' => 'No se permiten letras o signos',
             'cantidad_producto.required' => 'Debe ingresar una cantidad',
             'cantidad_producto.numeric' => 'No se permiten letras o signos',
-
         ];
         $this->validate($rules, $messages);
 
@@ -98,7 +97,6 @@ class InventarioCajero extends Component
             'punto_reorden_producto.numeric' => 'No se permiten letras o signos',
             'cantidad_producto.required' => 'Debe ingresar una cantidad',
             'cantidad_producto.numeric' => 'No se permiten letras o signos',
-
         ];
         $this->validate($rules, $messages);
 
@@ -115,6 +113,38 @@ class InventarioCajero extends Component
         $this->resetUI();
         $this->dispatch('hide-modal-crear-producto');
     }
+
+    public function updateCantidad()
+    {
+        $rules = [
+            'cantidad_agregada' => 'required|numeric',
+        ];
+        $messages = [
+            'cantidad_agregada.numeric' => 'No se permiten letras o signos...',
+            'cantidad_agregada.required' => 'Debe ingresar una cantidad para agregar',
+        ];
+        $this->validate($rules, $messages);
+
+        $this->cantidad_agregada_total = $this->cantidad_producto_actual + $this->cantidad_agregada;
+        $this->datos_producto->cantidad = $this->cantidad_agregada_total;
+        $this->datos_producto->save();
+
+        $this->resetUI();
+        $this->dispatch('hide-modal-agregar-cantidad');
+    }
+    public function actualizarCantidadProducto($id, $opc)
+    {
+        if ($opc == 1) {
+            $this->datos_producto = Productos::find($id);
+            $this->cantidad_producto_actual = $this->datos_producto->cantidad;
+            $this->dispatch('show-modal-agregar-cantidad');
+        }
+    }
+    public function getCantidadAgregadaTotalProperty()
+    {
+        return $this->cantidad_agregada_total;
+    }
+
     public function actualizarIdProducto($id, $opc)
     {
         if ($opc == 1) {
@@ -147,12 +177,9 @@ class InventarioCajero extends Component
         $this->precio_venta_producto = null;
         $this->punto_reorden_producto = null;
         $this->cantidad_producto = null;
+        $this->cantidad_agregada = null;
     }
-    public function agregarCantidadProducto($id)
-    {
-        $this->datos_producto = Productos::find($id);
-        $this->cantidad_producto = $this->datos_producto->cantidad;
-    }
+
     public function abrirModalAgregar()
     {
         $this->resetUI();

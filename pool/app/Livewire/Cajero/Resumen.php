@@ -33,17 +33,26 @@ class Resumen extends Component
         $id_facturas = $detalles_factura->pluck('id_factura');
 
         $facturas_con_mesas = [];
+        $nombres=[];
 
         foreach ($id_facturas as $id_factura) {
             $id_mesa = Facturas::find($id_factura)->id_mesa;
             $id_tipo_mesa = Mesas::find($id_mesa)->id_tipo_mesas;
             $nombre_mesa = TipoMesas::find($id_tipo_mesa)->nombre_mesa;
-
-            $facturas_con_mesas[$id_factura] = $nombre_mesa;
+            $nombres[$id_factura] = $nombre_mesa;
+            $facturas_con_mesas[$id_factura] = $id_tipo_mesa;
         }
 
-        return view('livewire.Cajero.Resumen.resumen', compact('detalles_factura', 'facturas_con_mesas'))->extends('layouts.app');
+        $productos_nombres = [];
+        foreach ($detalles_factura as $detalle) {
+            $producto = Productos::find($detalle->id_producto);
+            if ($producto) {
+                $productos_nombres[$detalle->id_producto] = $producto->nombre;
+            } else {
+                $productos_nombres[$detalle->id_producto] = 'Producto no encontrado';
+            }
+        }
+
+        return view('livewire.Cajero.Resumen.resumen', compact('detalles_factura','nombres', 'facturas_con_mesas', 'productos_nombres'))->extends('layouts.app');
     }
-
-
 }

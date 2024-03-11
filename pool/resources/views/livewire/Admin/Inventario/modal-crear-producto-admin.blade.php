@@ -83,13 +83,11 @@
                 <input type="text" class="form-control" aria-label="Nombres" aria-describedby="puntoReordenProducto"
                     wire:model.blur="punto_reorden_producto" value="">
             </div>
+            <div wire:loading wire:target="image">
+                Subiendo...
+            </div>
             <div class="input-group mb-3">
-                <input type="file" wire:model.live="image">
-                <div wire:loading wire:target="image">
-
-                    Uploading...
-            
-                </div>
+                <input type="file" class="form-control text-success" wire:model.live="image">
             </div>
 
         </div>

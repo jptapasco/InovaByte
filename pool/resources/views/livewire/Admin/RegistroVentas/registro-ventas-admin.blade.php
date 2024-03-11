@@ -4,13 +4,13 @@
         <div class="d-sm-flex align-items-left justify-content-left mb-4 mt-2">
             <div class="input-group" style="width: 28%">
                 <h4 class="mt-1 me-1">Desde:</h4>
-                <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="desde">
             </div>
             <div class="input-group me-3" style="width: 28%">
                 <h4 class="mt-1 me-1">Hasta:</h4>
-                <input type="text" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.blur="search">
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="hasta">
             </div>
-            <button wire:click="abrirModalCrear" type="button" class="btn btn-success"><i class="fa-solid fa-filter"></i> Filtrar</button>
+            <button type="button" class="btn btn-success"><i class="fa-solid fa-filter"></i> Filtrar</button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <table class="table table-bordered table-success border-success">
@@ -41,20 +41,33 @@
                                     <td><button type="button" class="btn btn-success disabled">Ver Horas</button></td>
                                 @else
                                     <td><button type="button" class="btn btn-success"
-                                            wire:click='verHoras({{ $factura->id }}, 2)'>Ver Horas</button>
+                                            wire:click='actualizarIdFactura({{ $factura->id }}, 1)'>Ver Horas</button>
                                     </td>
                                 @endif
                                 <td><button type="button" class="btn btn-success"
-                                        wire:click='verDetalles({{ $factura->id }})'>Detalles</button></td>
+                                        wire:click='actualizarIdFactura({{ $factura->id }}, 2)'>Detalles</button></td>
                             </tr>
                         @endforeach
                     @endif
                 </tbody>
             </table>
-            <x-modal-confirmacion id="modalConfirmacionEliminar" funcion="eliminarUsuario">Desea realmente eliminar este
-                usuario?</x-modal-confirmacion>
-            <x-modal-confirmacion id="modalConfirmacionActivar" funcion="activarUsuario">Desea realmente activar este
-                usuario?</x-modal-confirmacion>
         </div>
+        @include('livewire.Admin.RegistroVentas.modal-ver-horas-admin')
+        @include('livewire.Admin.RegistroVentas.modal-ver-detalles-admin')
+
+        <script>
+            document.addEventListener('livewire:initialized', function() {
+                const modalVerHoras = new bootstrap.Modal('#modalVerHoras');
+                const modalVerDetalles = new bootstrap.Modal('#modalVerDetalles');
+
+                @this.on('show-modal-ver-horas', msg => {
+                    modalVerHoras.show();
+                });
+
+                @this.on('show-modal-ver-detalles', msg => {
+                    modalVerDetalles.show();
+                });
+            });
+        </script>
     </div>
 </div>

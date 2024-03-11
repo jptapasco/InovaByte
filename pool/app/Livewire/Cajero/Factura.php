@@ -10,10 +10,7 @@ use Carbon\Carbon;
 
 class Factura extends Component
 {
-    public $usuario_actual, $productosSeleccionados;
-    public $dineroRecibido;
-    public $total;
-    public $vueltoCalculado;
+    public $usuario_actual, $productosSeleccionados, $dineroRecibido, $total, $vueltoCalculado;
 
     public function mount()
     {
@@ -74,7 +71,10 @@ class Factura extends Component
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+            $producto = Productos::find($item['producto']->id);
+            $producto->cantidad -= $item['cantidad_a_llevar'];
+            $producto->save();
         }
+        session()->forget('productos_seleccionados');
     }
-
 }
