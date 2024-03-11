@@ -26,10 +26,7 @@ class DashboardAdmin extends Component
             return abort('403');
         }
         $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
-        $this->empleados = User::where('rol', '!=', 'admin')->when($strSearch, function ($query, $strSearch) {
             return $query->where(
-                function ($query) use ($strSearch) {
-                    $query  ->where('nombres', 'like', $strSearch)
                             ->orWhere('email', 'like', $strSearch)
                             ->orWhere('telefono', 'like', $strSearch)
                             ->orWhere('documento', 'like', $strSearch)

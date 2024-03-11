@@ -93,7 +93,6 @@
                 @this.on('hide-modal-activar-cliente', msg => {
                     modalConfirmacionActivar.hide();
                 });
-
             });
         </script>
     </div>

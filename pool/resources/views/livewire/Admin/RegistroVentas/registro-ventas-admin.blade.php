@@ -67,7 +67,6 @@
                 @this.on('show-modal-ver-detalles', msg => {
                     modalVerDetalles.show();
                 });
-
             });
         </script>
     </div>
