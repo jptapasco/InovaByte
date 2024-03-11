@@ -11,6 +11,8 @@ use App\Livewire\Admin\UsuariosAdmin;
 use App\Livewire\Cajero\ClientesCajero;
 use App\Livewire\Cajero\DashboardCajero;
 use App\Livewire\Cajero\Factura;
+use App\Livewire\Cajero\Resumen;
+use App\Livewire\Cajero\MeserasCajero;
 use App\Livewire\Cajero\InventarioCajero;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -36,6 +38,7 @@ Route::get('/dashboard_cajero', DashboardCajero::class)->name('dashboard_cajero'
 Route::get('/inventario_cajero', InventarioCajero::class)->name('inventario_cajero');
 Route::get('/clientes_cajero', ClientesCajero::class)->name('clientes_cajero');
 Route::get('/factura', Factura::class)->name('factura');
-
+Route::get('/resumen', Resumen::class)->name('resumen');
+Route::get('/meseras_cajero', MeserasCajero::class)->name('meseras_cajero');
 
 require __DIR__.'/auth.php';
