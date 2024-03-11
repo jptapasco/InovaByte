@@ -52,6 +52,14 @@
                             </div>
                         </a>
                     </li>
+                    <li class="nav-item py-2">
+                        <a href="/mesas_admin" class="nav-link text-light fs-5">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-solar-panel me-3"></i>
+                                <span class="d-none d-xl-inline">Mesas</span>
+                            </div>
+                        </a>
+                    </li>
                     <hr>
                     <li class="nav-item py-2">
                         <form method="POST" action="{{ route('logout') }}">

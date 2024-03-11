@@ -3,6 +3,7 @@
 use App\Http\Controllers\Logout;
 use App\Http\Controllers\HomeController;
 use App\Livewire\Admin\DashboardAdmin;
+use App\Livewire\Admin\MesasAdmin;
 use App\Livewire\Admin\RegistroVentasAdmin;
 use App\Livewire\Admin\InventarioAdmin;
 use App\Livewire\Admin\ClientesAdmin;
@@ -28,6 +29,7 @@ Route::get('registro_ventas_admin', RegistroVentasAdmin::class)->name('registro_
 Route::get('inventario_admin', InventarioAdmin::class)->name('inventario_admin');
 Route::get('usuarios_admin', UsuariosAdmin::class)->name('usuarios_admin');
 Route::get('clientes_admin', ClientesAdmin::class)->name('clientes_admin');
+Route::get('mesas_admin', MesasAdmin::class)->name('mesas_admin');
 
 
 Route::get('/dashboard_cajero', DashboardCajero::class)->name('dashboard_cajero');
