@@ -13,21 +13,33 @@ class MesasSeeder extends Seeder
         DB::table('mesas')->insert([
             ['id_tipo_mesas' => '1',
             'id_mesera_asignada' => null,
+            'id_cliente_asignado' => null,
+            'estado' => 'activo',
+            'numero' => '1',
             'created_at' => now(),
             'updated_at' => now(),],
 
             ['id_tipo_mesas' => '2',
             'id_mesera_asignada' => null,
+            'id_cliente_asignado' => null,
+            'estado' => 'activo',
+            'numero' => '2',
             'created_at' => now(),
             'updated_at' => now(),],
 
             ['id_tipo_mesas' => '3',
             'id_mesera_asignada' => null,
+            'id_cliente_asignado' => null,
+            'estado' => 'activo',
+            'numero' => '3',
             'created_at' => now(),
             'updated_at' => now(),],
-            
+
             ['id_tipo_mesas' => '4',
             'id_mesera_asignada' => null,
+            'id_cliente_asignado' => null,
+            'estado' => 'activo',
+            'numero' => '4',
             'created_at' => now(),
             'updated_at' => now(),],
         ]);

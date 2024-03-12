@@ -360,8 +360,8 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -571,6 +571,7 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -591,6 +592,10 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         'App\\Livewire\\Admin\\UsuariosAdmin' => __DIR__ . '/../..' . '/app/Livewire/Admin/UsuariosAdmin.php',
         'App\\Livewire\\Cajero\\ClientesCajero' => __DIR__ . '/../..' . '/app/Livewire/Cajero/ClientesCajero.php',
         'App\\Livewire\\Cajero\\DashboardCajero' => __DIR__ . '/../..' . '/app/Livewire/Cajero/DashboardCajero.php',
+        'App\\Livewire\\Cajero\\Factura' => __DIR__ . '/../..' . '/app/Livewire/Cajero/Factura.php',
+        'App\\Livewire\\Cajero\\InventarioCajero' => __DIR__ . '/../..' . '/app/Livewire/Cajero/InventarioCajero.php',
+        'App\\Livewire\\Mesera\\IndexMesera' => __DIR__ . '/../..' . '/app/Livewire/Mesera/IndexMesera.php',
+        'App\\Livewire\\Mesera\\MesasAsignadas' => __DIR__ . '/../..' . '/app/Livewire/Mesera/MesasAsignadas.php',
         'App\\Models\\Clientes' => __DIR__ . '/../..' . '/app/Models/Clientes.php',
         'App\\Models\\FacturaDetalles' => __DIR__ . '/../..' . '/app/Models/FacturaDetalles.php',
         'App\\Models\\Facturas' => __DIR__ . '/../..' . '/app/Models/Facturas.php',
@@ -3783,6 +3788,7 @@ class ComposerStaticInit21067ed1a52bcbf9fab361f2eaddce0a
         'Livewire\\Features\\SupportTesting\\Testable' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Testable.php',
         'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertNoRedirectUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertNoRedirectUnitTest.php',
         'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertPropertiesUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertPropertiesUnitTest.php',
+        'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertRedirectToRouteUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertRedirectToRouteUnitTest.php',
         'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertRedirectUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertRedirectUnitTest.php',
         'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertStatusCodesUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertStatusCodesUnitTest.php',
         'Livewire\\Features\\SupportTesting\\Tests\\TestableLivewireCanAssertViewIsUnitTest' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportTesting/Tests/TestableLivewireCanAssertViewIsUnitTest.php',

@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Cajero;
 
-use Livewire\WithFileUploads;
 use App\Models\Productos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
-class InventarioAdmin extends Component
+class InventarioCajero extends Component
 {
-    use WithFileUploads;
-    public $usuario_actual,$imageData,$image, $productos, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
-    
+    public $usuario_actual, $productos, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
     public function mount()
     {
         $this->usuario_actual = Auth::user();
@@ -22,7 +18,7 @@ class InventarioAdmin extends Component
     {
         if($this->usuario_actual == null){
             return abort('403');
-        }else if ($this->usuario_actual->rol != 'admin') {
+        }else if ($this->usuario_actual->rol != 'cajero') {
             return abort('403');
         }
         $strSearch = $this->search == '' ? false : '%' . str_replace(' ', '%', $this->search) . '%';
@@ -39,7 +35,7 @@ class InventarioAdmin extends Component
                 }
             );
         })->get();
-        return view('livewire.Admin.Inventario.inventario-admin')->extends('layouts.app')->section('content');
+        return view('livewire.Cajero.Inventario.inventario-cajero')->extends('layouts.app')->section('content');
     }
     public function update()
     {
@@ -78,8 +74,7 @@ class InventarioAdmin extends Component
         $this->dispatch('hide-modal-editar-producto');
     }
     public function store()
-    {   
-        $this->imageData = base64_encode(File::get($this->image->getRealPath()));
+    {
         $rules = [
             'nombre_producto' => 'required',
             'descripcion_producto' => 'required',
@@ -116,7 +111,6 @@ class InventarioAdmin extends Component
             'precio_venta' => $this->precio_venta_producto,
             'punto_reorden' => $this->punto_reorden_producto,
             'cantidad' => $this->cantidad_producto,
-            'url' => $this->imageData,
         ]);
         $this->resetUI();
         $this->dispatch('hide-modal-crear-producto');
@@ -153,5 +147,15 @@ class InventarioAdmin extends Component
         $this->precio_venta_producto = null;
         $this->punto_reorden_producto = null;
         $this->cantidad_producto = null;
+    }
+    public function agregarCantidadProducto($id)
+    {
+        $this->datos_producto = Productos::find($id);
+        $this->cantidad_producto = $this->datos_producto->cantidad;
+    }
+    public function abrirModalAgregar()
+    {
+        $this->resetUI();
+        $this->dispatch('show-modal-agregar-inventario');
     }
 }

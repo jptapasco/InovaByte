@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('precio_compra');
             $table->integer('precio_venta');
             $table->text('descripcion');
-            $table->string('url');
+            $table->longText('url');
             $table->timestamps();
         });
     }

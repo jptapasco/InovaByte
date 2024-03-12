@@ -1,6 +1,5 @@
 <x-guest-layout>
 
-
     <div class="bg-success justify-content-center p-5 rounded">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />

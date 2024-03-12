@@ -58,7 +58,6 @@
         @include('livewire.Admin.Clientes.modal-editar-cliente-admin')
         @include('livewire.Admin.Clientes.modal-crear-cliente-admin')
 
-
         <script>
             document.addEventListener('livewire:initialized', function() {
                 const modalEditarCliente = new bootstrap.Modal('#modalEditarCliente');

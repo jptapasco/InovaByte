@@ -19,7 +19,7 @@ class HomeController extends Controller
         if ($usuarioActual->rol == 'admin') {
             return redirect('dashboard_admin');
         }
-        //dd($usuarioActual);
+
         if ($usuarioActual->rol == 'cajero') {
             return redirect('dashboard_cajero');
         }

@@ -2,6 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    @if (Auth::user()) 
+        <script>window.location = "/home";</script>
+    @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,6 +20,7 @@
 
 
 <body class="bg-success bg-opacity-50">
+    
     <div class="container vh-100 d-flex justify-content-center align-items-center flex-column">
         <div class="col-md-4 text-center mb-4">
             <img src="{{ asset('img/billar.svg') }}" alt="Logo" class="fill-current"

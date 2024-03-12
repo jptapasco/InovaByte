@@ -8,8 +8,8 @@
             @enderror
             <div class="input-group mb-3">
                 <span class="input-group-text text-success" id="nombresProducto">Nombre:</span>
-                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="nombresProducto" wire:model.blur="nombre_producto"
-                    value="">
+                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="nombresProducto"
+                    wire:model.blur="nombre_producto" value="">
             </div>
 
             @error('descripcion_producto')
@@ -17,8 +17,8 @@
             @enderror
             <div class="input-group mb-3">
                 <span class="input-group-text text-success" id="descripcionProducto">Descripción:</span>
-                <textarea class="form-control" id="descripcionProducto" aria-describedby="descripcionProducto"  wire:model.blur="descripcion_producto"
-                    value=""></textarea>
+                <textarea class="form-control" id="descripcionProducto" aria-describedby="descripcionProducto"
+                    wire:model.blur="descripcion_producto" value=""></textarea>
             </div>
 
             <div class="input-group">
@@ -58,12 +58,12 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text text-success" id="precioCompraProducto">P.C:</span>
-                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="precioCompraProducto" wire:model.blur="precio_compra_producto"
-                    value="">
+                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="precioCompraProducto"
+                    wire:model.blur="precio_compra_producto" value="">
 
                 <span class="input-group-text text-success" id="precioVentaProducto">P.V:</span>
-                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="precioVentaProducto" wire:model.blur="precio_venta_producto"
-                    value="">
+                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="precioVentaProducto"
+                    wire:model.blur="precio_venta_producto" value="">
             </div>
 
             <div class="input-group">
@@ -76,12 +76,18 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text text-success" id="cantidadProducto">Cantidad:</span>
-                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="cantidadProducto" wire:model.blur="cantidad_producto"
-                value="">
-                
+                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="cantidadProducto"
+                    wire:model.blur="cantidad_producto" value="">
+
                 <span class="input-group-text text-success" id="puntoReordenProducto">P.R:</span>
-                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="puntoReordenProducto" wire:model.blur="punto_reorden_producto"
-                    value="">
+                <input type="text" class="form-control" aria-label="Nombres" aria-describedby="puntoReordenProducto"
+                    wire:model.blur="punto_reorden_producto" value="">
+            </div>
+            <div wire:loading wire:target="image">
+                Subiendo...
+            </div>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control text-success" wire:model.live="image">
             </div>
 
         </div>

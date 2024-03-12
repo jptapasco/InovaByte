@@ -22,33 +22,33 @@
 
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+    @livewireStyles
 </head>
 
 <body class="bg-success bg-opacity-25">
     @php
-        $usuario_actual = Auth::user();
+    $usuario_actual = Auth::user();
     @endphp
+
     <div class="container-fluid">
         @include('layouts.header')
-        @if ($usuario_actual->rol == 'admin')
-            @include('layouts.sidebar')
-        @endif
-        @if ($usuario_actual->rol == 'cajero')
-            @include('layouts.sidebarCajero')
-        @endif
-        <!-- Content Wrapper -->
+
+        @include('layouts.sidebar')
     </div>
+
     <div class="container pt-5">
         <div class="row pt-5">
             <div class="col-2">
-                
+
             </div>
             <div class="col-10">
                 @yield('content')
             </div>
         </div>
     </div>
+    @livewireScripts
 </body>
+
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.esm.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
