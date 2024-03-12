@@ -40,7 +40,8 @@ class Resumen extends Component
             $id_tipo_mesa = Mesas::find($id_mesa)->id_tipo_mesas;
             $nombre_mesa = TipoMesas::find($id_tipo_mesa)->nombre_mesa;
             $nombres[$id_factura] = $nombre_mesa;
-            $facturas_con_mesas[$id_factura] = $id_tipo_mesa;
+            $numero_mesa = Mesas::find($id_tipo_mesa)->numero;
+            $facturas_con_mesas[$id_factura] = $numero_mesa;
         }
 
         $productos_nombres = [];

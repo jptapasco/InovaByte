@@ -23,7 +23,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Id</th>
+                        <th scope="col">N°</th>
                         <th scope="col">Mesas</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Cantidad</th>
