@@ -1,5 +1,4 @@
-<x-modal title="Crear observación para {{ $nombres_empleados }}" id="modalAddDetalles" type="custom" button="Agregar"
-    function="addObservacion">
+<x-modal title="Crear observación para {{ $nombres_empleados }}" id="modalAddDetalles" type="custom" button="Agregar" function="addObservacion">
     <div class="card border-success-subtle mb-2">
         <div class="card-body text-success">
             <div class="form-floating">

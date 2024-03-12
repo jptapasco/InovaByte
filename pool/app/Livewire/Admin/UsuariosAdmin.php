@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Mesas;
 use App\Models\User;
 use App\Models\UsuarioObservaciones;
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,12 @@ class UsuariosAdmin extends Component
         $usuario->update([
             'estado' => 'inactivo',
         ]);
-        $this->usuarios = User::all();
+        $asignaciones = Mesas::where('id_mesera_asignada', $this->id_usuario)->get();
+        foreach ($asignaciones as $asignacion) {
+            $asignacion->update([
+                'id_mesera_asignada' => null,
+            ]);
+        }
         $this->dispatch('hide-modal-eliminar-usuario');
     }
     public function activarUsuario()
@@ -116,7 +122,6 @@ class UsuariosAdmin extends Component
         $usuario->update([
             'estado' => 'activo',
         ]);
-        $this->usuarios = User::all();
         $this->dispatch('hide-modal-activar-usuario');
     }
     public function abrirModalObservacion()

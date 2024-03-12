@@ -41,7 +41,7 @@
                                 <td><button type="button" class="btn btn-success"
                                     wire:click='actualizarIdCliente({{ $cliente->id }}, 3)'>Editar</button></td>
                                 @if ($cliente->estado == 'activo')
-                                    <td><button type="button" class="btn btn-success"
+                                    <td><button type="button" class="btn btn-danger"
                                     wire:click='actualizarIdCliente({{ $cliente->id }}, 1)'>Eliminar</button></td>
                                 @else
                                     <td><button type="button" class="btn btn-success"

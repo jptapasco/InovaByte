@@ -53,7 +53,7 @@
             @if ($fondos_dia == null)
                 <button type="button" class="btn btn-success mr-3" wire:click='abrirDia'>Apertura Caja</button>
             @else
-                <button type="button" class="btn btn-success" wire:click='cerrarDia'>Cierre Caja</button>
+                <button type="button" class="btn btn-danger" wire:click='cerrarDia'>Cierre Caja</button>
             @endif
         </div>
 
