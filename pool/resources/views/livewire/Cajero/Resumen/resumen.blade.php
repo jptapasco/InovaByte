@@ -12,7 +12,7 @@
                 <span style="color: green;">
                     ${{ 
                         $detalles_factura->filter(function($detalle) use ($facturas_con_mesas) {
-                            return isset($facturas_con_mesas[$detalle->id_factura]) && $facturas_con_mesas[$detalle->id_factura] == '4';
+                            return isset($facturas_con_mesas[$detalle->id_factura]) && $facturas_con_mesas[$detalle->id_factura] == '1';
                         })->sum('subtotal') 
                     }}
                 </span>
