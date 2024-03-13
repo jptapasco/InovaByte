@@ -40,11 +40,11 @@
                                 </select>   
                             </div>                            
                             @if ($mesa->id_mesera_asignada === null)
-                                <button class="btn btn-outline-secondary" wire:click="modalConfirmarMesera(1)">Asignar</button>
+                                <button class="btn btn-outline-secondary" wire:click="asignarMesera({{ $mesa->id }})">Asignar</button>
                             @else
                                 <div class="d-flex">
                                     <div class="col">
-                                        <button class="btn btn-outline-warning" wire:click="modalConfirmarMesera(2)">Cambiar</button>
+                                        <button class="btn btn-outline-warning" wire:click="asignarMesera({{ $mesa->id }})">Cambiar</button>
                                     </div>
                                     <div class="">
                                         <button class="btn btn-outline-info" wire:click="habilitarMesa({{ $mesa->id }})">Habilitar</button>
@@ -53,8 +53,6 @@
                             @endif
                         </div>
                     </div>
-                    <x-modal-confirmacion id="modalConfirmarAsignacion" funcion="asignarMesera({{ $mesa->id }})">Desea asignar una mesera?</x-modal-confirmacion>
-                    <x-modal-confirmacion id="modalConfirmarCambioMesera" funcion="asignarMesera({{ $mesa->id }})">Desea cambiar la mesera?</x-modal-confirmacion>
                 </div>
                 @empty 
                     <h2 class="text-warning border-bottom border-danger"  style="width: 400px">No hay mesas disponibles.</h2>

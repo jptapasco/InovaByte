@@ -106,8 +106,9 @@ class MesasAsignadas extends Component
         $this->clientes = Clientes::where('estado', 'activo')->get();
         $this->asignar_cliente = 0;
 
-        if($this->mesa_db->id_tipo_mesa != 3)
+        if($this->mesa_db->id_tipo_mesas != 3)
         {
+            dd($this->mesa_db);
             $time1 = Carbon::parse($this->factura->hora_inicio);
             $time2 = Carbon::parse(now());
             $this->diferencia_horas = $time1->diffInSeconds($time2);
@@ -117,8 +118,8 @@ class MesasAsignadas extends Component
 
         $this->factura->update([
             'estado' => 'cobrado',
-            'hora_fin' =>  $this->mesa_db->id_tipo_mesa != 3 ? now() : null,
-            'total' =>  $this->mesa_db->id_tipo_mesa != 3 ? $this->factura->total +  $this->diferencia_horas * 4000 : $this->factura->total 
+            'hora_fin' =>  $this->mesa_db->id_tipo_mesas != 3 ? now() : null,
+            'total' =>  $this->mesa_db->id_tipo_mesas != 3 ? $this->factura->total +  $this->diferencia_horas * 4000 : $this->factura->total 
         ]);
 
         $this->mesa_db->update(
