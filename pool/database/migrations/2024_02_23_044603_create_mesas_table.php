@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('numero');
             $table->foreign('id_tipo_mesas')->references('id')->on('tipo_mesas');
             $table->foreign('id_mesera_asignada')->references('id')->on('users');
-            $table->foreign('id_cliente_asignado')->references('id')->on('users');
+            $table->foreign('id_cliente_asignado')->references('id')->on('clientes');
             $table->timestamps();
         });
     }
