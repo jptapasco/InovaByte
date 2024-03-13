@@ -84,9 +84,4 @@ class MesasCajero extends Component
             redirect()->route('mesas_cajero');
         }
     }
-
-
-    
-    
 }
-

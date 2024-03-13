@@ -11,6 +11,7 @@ class Mesas extends Model
     protected $fillable = [
         'id_tipo_mesas',
         'id_mesera_asignada',
+        'id_cliente_asignado',
         'estado',
         'numero',
         'created_at',

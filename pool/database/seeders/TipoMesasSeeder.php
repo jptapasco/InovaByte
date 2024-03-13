@@ -11,6 +11,10 @@ class TipoMesasSeeder extends Seeder
     public function run(): void
     {
         DB::table('tipo_mesas')->insert([
+            ['nombre_mesa' => 'caja',
+            'created_at' => now(),
+            'updated_at' => now(),],
+
             ['nombre_mesa' => 'pool',
             'created_at' => now(),
             'updated_at' => now(),],
@@ -23,9 +27,6 @@ class TipoMesasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),],
             
-            ['nombre_mesa' => 'caja',
-            'created_at' => now(),
-            'updated_at' => now(),],
         ]);
     }
 }

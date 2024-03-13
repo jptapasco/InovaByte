@@ -50,8 +50,8 @@ class Factura extends Component
     public function generarFactura()
     {
         $factura = Facturas::create([
-            'id_mesa' => 4,
-            'id_cliente' => 6,
+            'id_mesa' => 1,
+            'id_cliente' => 1,
             'id_vendedor' => $this->usuario_actual->id,
             'total' => $this->total,
             'hora_inicio' => Carbon::now(),
@@ -71,6 +71,10 @@ class Factura extends Component
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+            $producto = Productos::find($item['producto']->id);
+            $producto->cantidad -= $item['cantidad_a_llevar'];
+            $producto->save();
         }
+        session()->forget('productos_seleccionados');
     }
 }

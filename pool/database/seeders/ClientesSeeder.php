@@ -11,6 +11,16 @@ class ClientesSeeder extends Seeder
     public function run(): void
     {
         DB::table('clientes')->insert([
+            ['documento' => '000',
+            'nombres' => 'Invitado',
+            'telefono' => '00000000',
+            'horas_jugadas' => '0',
+            'horas_regalo' => '0',
+            'estado' => 'activo',
+            'ultima_visita' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),],
+
             ['documento' => '101',
             'nombres' => 'Juan Perez',
             'telefono' => '5551234',

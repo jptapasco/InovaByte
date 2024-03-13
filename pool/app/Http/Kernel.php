@@ -45,6 +45,11 @@ class Kernel extends HttpKernel
         ],
     ];
 
+    protected $routeMiddleware = [
+        'productos.seleccionados' => \App\Http\Middleware\CheckProductosSeleccionados::class,
+    ];
+    
+
     /**
      * The application's middleware aliases.
      *

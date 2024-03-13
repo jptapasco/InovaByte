@@ -49,7 +49,7 @@
             <input type="number" wire:model="dineroRecibido" aria-label="Dinero recibido" class="form-control"
                 placeholder="$">
         </div>
-        <button wire:click="calcularVuelto" class="btn btn-primary mt-3">Calcular Vuelto</button>
+        <button wire:click="calcularVuelto" class="btn btn-primary mt-3"><i class="fa-solid fa-money-bill"></i>     Calcular Vuelto</button>
         @if ($dineroRecibido < $total && $dineroRecibido !== null)
             <p class="text-danger mt-2">El dinero recibido es menor que el total.</p>
         @elseif($vueltoCalculado !== null)
@@ -57,7 +57,7 @@
         @endif
         <div class="text-center mt-5">
             <button id="confirmarButton" wire:click="generarFactura" class="btn btn-success btn-lg mx-3"
-                style="width: 200px;">Confirmar</button>
+                style="width: 200px;"><i class="fa-regular fa-circle-check"></i> Confirmar</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

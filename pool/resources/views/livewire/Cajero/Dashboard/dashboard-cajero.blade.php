@@ -14,15 +14,22 @@
                 @forelse ($productos as $producto)
                     <div class="col-md-6 col-lg-3 col-sm-12 mb-4 ">
                         <div class="card border-success-subtle ">
-                            <img src="data:image/png;base64,{{ $producto->url }}" alt="Uploaded Image"
-                                style="width: 100%; height: 230px;">
+                            <img src="data:image/png;base64,{{ $producto->url }}" alt="Uploaded Image" style="width: 100%; height: 230px;">
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold text-success">{{ $producto->nombre }}</h5>
-                                <p class="card-text text-success">${{ $producto->precio_venta }}</p>
-                                <p class="card-text">{{ $producto->cantidad }}</p>
-                                <button class="btn btn-outline-success"
-                                    wire:click="agregarProducto({{ $producto->id }})">Agregar</button>
-                            </div>
+                                <p class="card-text text-success fw-bold">${{ $producto->precio_venta }}</p>
+                                <p class="card-text fw-bold
+                                    @if($producto->cantidad > $producto->punto_reorden)
+                                        text-success 
+                                    @else
+                                        text-danger
+                                    @endif">
+                                    {{ $producto->cantidad }}
+                                </p>
+                                <button class="btn btn-outline-success" wire:click="agregarProducto({{ $producto->id }})">
+                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
+                                </button>
+                            </div>                                
                         </div>
                     </div>
                 @empty
@@ -71,11 +78,11 @@
 
         @if ($productosSeleccionados)
             <div class="text-center">
-                <button wire:click="facturar" class="btn btn-success mb-5 btn-lg">Facturar</button>
+                <button wire:click="facturar" class="btn btn-success mb-5 btn-lg"><i class="fa-solid fa-file-invoice-dollar"></i> Facturar</button>
             </div>
         @else
             <div class="text-center">
-                <button class="btn btn-success mb-5 disabled btn-lg">Facturar</button>
+                <button class="btn btn-success mb-5 disabled btn-lg"><i class="fa-solid fa-file-invoice-dollar"></i> Facturar</button>
             </div>
         @endif
     </div>

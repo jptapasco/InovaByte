@@ -42,7 +42,8 @@ Route::get('/factura', Factura::class)->name('factura');
 Route::get('/resumen', Resumen::class)->name('resumen');
 Route::get('/meseras_cajero', MeserasCajero::class)->name('meseras_cajero');
 Route::get('/mesas_cajero', MesasCajero::class)->name('mesas_cajero');
-Route::get('/factura', Factura::class)->name('factura');
+Route::get('/factura', Factura::class)->name('factura')->middleware('productos.seleccionados');
+
 
 
 require __DIR__.'/auth.php';

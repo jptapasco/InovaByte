@@ -95,10 +95,6 @@ class DashboardCajero extends Component
         return redirect()->route('factura');
     }
 
-    public function vistaFacturar()
-    {
-        return redirect()->route('factura');
-    }
 
 }
 
