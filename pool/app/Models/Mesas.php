@@ -26,6 +26,10 @@ class Mesas extends Model
     {
         return $this->belongsTo(TipoMesas::class, 'id_tipo_mesas');
     }
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(Clientes::class, 'id_cliente_asignado');
+    }
     public function estado()
     {
         return $this->id_mesera_asignada ? 'Ocupada' : 'Disponible';

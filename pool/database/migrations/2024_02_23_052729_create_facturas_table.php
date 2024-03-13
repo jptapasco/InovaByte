@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('total');
             $table->dateTime('hora_inicio')->nullable();
             $table->dateTime('hora_fin')->nullable();
+            $table->enum('estado', ['activo', 'cobrado'])->default('cobrado');
             $table->timestamps();
-            $table->foreign('id_mesa')->references('id')->on('mesas');
         });
     }
 

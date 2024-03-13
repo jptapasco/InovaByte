@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Mesera;
 
+use App\Models\Clientes;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Mesas;
@@ -9,11 +10,14 @@ use App\Models\TipoMesas;
 use App\Models\Facturas;
 use App\Models\FacturaDetalles;
 use App\Models\Productos;
+use App\Traits\ConsultaFacturas;
 use Carbon\Carbon;
 
 class IndexMesera extends Component
 {
-    public $usuario_actual,$id_factura_d,$factura_detalle,$facturas;
+    use ConsultaFacturas;
+
+    public $hora, $usuario_actual, $id_factura_d, $factura_detalle, $facturas, $desde, $hasta, $datos_factura, $nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $detalles_productos, $cantidades_productos, $subtotales_productos;
 
     public function mount()
     {
@@ -21,33 +25,15 @@ class IndexMesera extends Component
     }
 
     public function render()
-    {
-        $fecha_actual = Carbon::now()->format('Y-m-d');
-        $mesas = Mesas::where('id_mesera_asignada', $this->usuario_actual->id)->get();
-        $nombres = [];
-        $id_factura = [];
-
-        foreach ($mesas as $mesa) {
-            $nombre_mesa = TipoMesas::where('id', $mesa->id_tipo_mesas)->value('nombre_mesa');
-            $this->facturas = Facturas::where('id_mesa', $mesa->id)
-                                ->whereDate('hora_inicio', $fecha_actual)
-                                ->get(['id', 'hora_inicio','total']);
-
-            foreach ($this->facturas as $factura) {
-                $id_factura[] = [
-                    'hora_inicio' => $factura->hora_inicio,
-                    'id' => $factura->id,
-                    'total' => $factura->total,
-                ];
-            }
-            
-            $nombres[] = $nombre_mesa;
-        }
-        
-
-        return view('livewire.mesera.index-mesera', compact('nombres','id_factura','mesas'));
+    {        if($this->usuario_actual == null){
+        return abort('403');
+    }else if ($this->usuario_actual->rol != 'mesera') {
+        return abort('403');
     }
+        $this->consultarFacturas(1);       
 
+        return view('livewire.mesera.index-mesera')->extends('layouts.app')->section('content');
+    }
     public function cargarDetalleFactura($id)
     {
         $this->id_factura_d = [$id];
@@ -65,5 +51,9 @@ class IndexMesera extends Component
     public function abrirModalDetalleFactura()
     {
         $this->dispatch('show-modal-add-obs');
+    }
+    public function resetUI()
+    {
+        
     }
 }

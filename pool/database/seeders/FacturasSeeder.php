@@ -11,7 +11,7 @@ class FacturasSeeder extends Seeder
     public function run(): void
     {
         DB::table('facturas')->insert([
-            ['id_mesa' => '2',
+            ['id_mesa' => '1',
             'id_cliente' => '2',
             'id_vendedor' => '2',
             'total' => '130000',

@@ -38,21 +38,16 @@
                             <hr class="m-2">
                             <div class="card-body">
                                 <h5 class="card-text text-success">Mesa No: <span class="text-black">{{ $mesa->numero }}</span></h5>
-                                <p class="card-text text-success">Tipo: <span class="text-black">{{ $this->tipoMesa($mesa->id) }}</span></p>
-                                <p class="card-text text-success">Estado: <span>{{ $mesa->id_cliente_asignado !== null ? 'Ocupada':'Libre'}}</span></p>
+                                <p class="card-text text-success">Tipo: <span class="text-black">{{ $mesa->tipoMesa->nombre_mesa }}</span></p>
+                                <p class="card-text text-success">Estado: <span>{{ $mesa->id_cliente_asignado != null ? 'Ocupada':'Libre'}}</span></p>
 
-                                @if ($this->tipoMesa($mesa->id)=='mesa_clientes' && $mesa->id_cliente_asignado !== null)
-                                    <button class="btn btn-outline-secondary" wire:click="verPedido({{ $mesa->id }})"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="btn btn-outline-secondary" wire:click="agregarPedido({{ $mesa->id }})"><i class="fa-solid fa-cart-plus"></i></button>
-                                @endif
-
-                                @if ($mesa->id_cliente_asignado === null)
+                                @if ($mesa->id_cliente_asignado == null)
                                     <button class="btn btn-outline-secondary" wire:click="iniciarMesa('{{ $mesa->id }}')">Iniciar</button>
                                 @else
+                                <button class="btn btn-outline-secondary" wire:click="abrirFacturaMesa({{ $mesa->id }})"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn btn-outline-secondary" wire:click="abrirChiste({{ $mesa->id }})"><i class="fa-solid fa-cart-plus"></i></button>
                                     <button class="btn btn-outline-secondary" wire:click="cerrarMesa({{ $mesa->id }})">Cobrar</button>
                                 @endif
-
-
 
                             </div>
                         </div>
@@ -65,19 +60,37 @@
 
         {{-- MODALES DE LAS TARJETAS --}}
         @include('components.mesera.modal-abrir-mesa')
+        @include('livewire.Mesera.modal-chistoso-producto')
+        @include('livewire.Mesera.modal-factura-mesa')
+
         {{-- @include('livewire.mesera.mesas-asignadas') --}}
 
         {{-- EVENTOS PARA MODALES --}}
         <script>
             document.addEventListener('livewire:initialized', function() {
                 const modalAbrirMesa = new bootstrap.Modal('#modalAbrirMesa');
+                const modalChistoso = new bootstrap.Modal('#modalChistoso');
+                const modalFacturaMesa = new bootstrap.Modal('#modalFacturaMesa');
 
                 @this.on('show-start-modal', msg => {
                     modalAbrirMesa.show();
                 });
-
                 @this.on('close-start-modal', msg=> {
                     modalAbrirMesa.hide();
+                })
+
+                @this.on('show-modal-chistoso', msg => {
+                    modalChistoso.show();
+                });
+                @this.on('close-modal-chistoso', msg=> {
+                    modalChistoso.hide();
+                })
+
+                @this.on('show-modal-factura-mesa', msg => {
+                    modalFacturaMesa.show();
+                });
+                @this.on('close-modal-factura-mesa', msg=> {
+                    modalFacturaMesa.hide();
                 })
 
             });

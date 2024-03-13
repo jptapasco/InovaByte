@@ -37,10 +37,10 @@ class Resumen extends Component
 
         foreach ($id_facturas as $id_factura) {
             $id_mesa = Facturas::find($id_factura)->id_mesa;
-            $id_tipo_mesa = Mesas::find($id_mesa)->id_tipo_mesas;
-            $nombre_mesa = TipoMesas::find($id_tipo_mesa)->nombre_mesa;
+            $id_tipo_mesa = Mesas::find($id_mesa) ? Mesas::find($id_mesa)->id_tipo_mesas : 0;
+            $nombre_mesa = $id_tipo_mesa != 0 ? TipoMesas::find($id_tipo_mesa)->nombre_mesa : 'Cajero';
             $nombres[$id_factura] = $nombre_mesa;
-            $numero_mesa = Mesas::find($id_tipo_mesa)->numero;
+            $numero_mesa =  $id_tipo_mesa != 0 ? Mesas::find($id_tipo_mesa)->numero : 0;
             $facturas_con_mesas[$id_factura] = $numero_mesa;
         }
 

@@ -23,5 +23,9 @@ class HomeController extends Controller
         if ($usuarioActual->rol == 'cajero') {
             return redirect('dashboard_cajero');
         }
+
+        if ($usuarioActual->rol == 'mesera') {
+            return redirect('dashboard_mesera');
+        }
     }
 }

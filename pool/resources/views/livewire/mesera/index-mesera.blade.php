@@ -1,94 +1,73 @@
 <div>
-    <div class="bg-light card p-5 my-3">
-        <h1 id="hora-actual" class="text-center"></h1>
-        <div class="mt-3">
-            <h2>
-                Dinero de ventas:
-                @php
-                    $sumatoria_total = collect($id_factura)->pluck('total')->sum();
-                @endphp
-
-                <span style="color: green;">${{ $sumatoria_total }}</span>
-            </h2>
+    <div class="bg-slight card p-5 my-3">
+        <h1 class="text-success">Factura</h1>
+        <div class="d-sm-flex align-items-left justify-content-left mb-4 mt-2">
+            <div class="input-group" style="width: 28%">
+                <h4 class="mt-1 me-1">Desde:</h4>
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="desde">
+            </div>
+            <div class="input-group me-3" style="width: 28%">
+                <h4 class="mt-1 me-1">Hasta:</h4>
+                <input type="date" class="form-control border-success text-success" placeholder="Busqueda" aria-label="Busqueda" wire:model.live="hasta">
+            </div>
+            <button type="button" class="btn btn-success"><i class="fa-solid fa-filter"></i> Filtrar</button>
         </div>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-            <table class="table table-bordered table-success border-success text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <table class="table table-bordered table-success border-success">
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
-                        <th scope="col">N°</th>
-                        <th scope="col">Mesas</th>
-                        <th scope="col">Factura</th>
+                        <th scope="col">Vendedor</th>
                         <th scope="col">Total</th>
-                        <th scope="col">Opcion</th>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col" colspan="2">Opciones</th>
                     </tr>
                 </thead>
-                @if(empty($id_factura))
-                    <tr>
-                        <td colspan="6">No hay facturas realizadas</td>
-                    </tr>
-                @else
-                @foreach($nombres as $key => $nombre)
-                    <tr>
-                        @if(array_key_exists($key, $id_factura))
-                            <td>{{ $id_factura[$key]['hora_inicio'] }}</td>
-                            <td>{{ $mesas[$key]->numero }}</td>
-                            <td>{{ $nombre }}</td>
-                            <td>{{ $id_factura[$key]['id'] }}</td>
-                            <td>{{ $id_factura[$key]['total'] }}</td>
-                            <td><button class="btn btn-success" wire:click='cargarDetalleFactura({{ $id_factura[$key]['id'] }})'>Detalles</button></td>
-                        @endif
-                    </tr>
-                @endforeach
-          
-                @endif
                 <tbody>
-                </tbody>                
+                    @if ($facturas->count() == 0)
+                        <tr>
+                            <td colspan="6" style="text-align:center">No hay facturas</td>
+                        </tr>
+                    @else
+                        @foreach ($facturas as $factura)
+                            <tr>
+                                <td>{{ $factura->created_at }}</td>
+                                <td>{{ $factura->nombres_vendedor }}</td>
+                                <td>{{ $factura->total }}</td>
+                                <td>{{ $factura->id_mesa }}</td>
+                                <td>{{ $factura->documento_cliente }}</td>
+                                @if ($factura->hora_inicio == null)
+                                    <td><button type="button" class="btn btn-success disabled">Ver Horas</button></td>
+                                @else
+                                    <td><button type="button" class="btn btn-success"
+                                            wire:click='actualizarIdFactura({{ $factura->id }}, 1)'>Ver Horas</button>
+                                    </td>
+                                @endif
+                                <td><button type="button" class="btn btn-success"
+                                        wire:click='actualizarIdFactura({{ $factura->id }}, 2)'>Detalles</button></td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
             </table>
         </div>
+        @include('livewire.Admin.RegistroVentas.modal-ver-horas-admin')
+        @include('livewire.Admin.RegistroVentas.modal-ver-detalles-admin')
+
+        <script>
+            document.addEventListener('livewire:initialized', function() {
+                const modalVerHoras = new bootstrap.Modal('#modalVerHoras');
+                const modalVerDetalles = new bootstrap.Modal('#modalVerDetalles');
+
+                @this.on('show-modal-ver-horas', msg => {
+                    modalVerHoras.show();
+                });
+
+                @this.on('show-modal-ver-detalles', msg => {
+                    modalVerDetalles.show();
+                });
+            });
+        </script>
     </div>
-    @include('livewire.mesera.modal-detalle-factura')
-    <script>
-        document.addEventListener('livewire:initialized', function() {
-            const modalDetalleFactura = new bootstrap.Modal('#modalDetalleFactura');
-
-            @this.on('show-modal', msg => {
-                modalDetalleFactura.show();
-            });
-            @this.on('show-modal-add-obs', msg => {
-                modalDetalleFactura.hide();
-            });
-            @this.on('close-modal-add-obs', msg => {
-                modalDetalleFactura.show();
-            });
-
-        });
-    </script>
-    <script>
-        function actualizarHora() {
-            var fecha = new Date();
-            var dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-            var meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-            var dia = dias[fecha.getDay()];
-            var diaMes = fecha.getDate();
-            var mes = meses[fecha.getMonth()];
-            var anio = fecha.getFullYear();
-            var horas = fecha.getHours();
-            var minutos = fecha.getMinutes();
-            var segundos = fecha.getSeconds();
-            var ampm = horas >= 12 ? 'pm' : 'am';
-
-            horas = horas % 12;
-            horas = horas ? horas : 12;
-            minutos = minutos < 10 ? '0' + minutos : minutos;
-            segundos = segundos < 10 ? '0' + segundos : segundos;
-
-            var horaString = dia + ' ' + diaMes + ' de ' + mes + ' del año ' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + ampm;
-            document.getElementById('hora-actual').innerHTML = horaString;
-            setTimeout(actualizarHora, 1000);
-        }
-        window.onload = function() {
-            actualizarHora();
-        };
-    </script>
 </div>

@@ -31,10 +31,6 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if($user->rol == 'mesera'){
-            return redirect()->intended(route('mesera.index'));
-        }
-
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

@@ -24,7 +24,7 @@
                     <tr>
                         <th scope="col">Fecha</th>
                         <th scope="col">N°</th>
-                        <th scope="col">Mesas</th>
+                        <th scope="col">Mesa</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Subtotal</th>

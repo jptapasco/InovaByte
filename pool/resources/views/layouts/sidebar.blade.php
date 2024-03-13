@@ -145,7 +145,7 @@
                 @if ($usuario_actual->rol == 'mesera')
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item py-2">
-                        <a href="{{ route('mesera.index') }}" class="nav-link text-light fs-5">
+                        <a href="/dashboard_mesera" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-house me-3"></i>
                                 <span class="d-none d-xl-inline">Inicio</span>
@@ -153,7 +153,7 @@
                         </a>
                     </li>
                     <li class="nav-item py-2">
-                        <a href="{{ route('mesera.mesas') }}" class="nav-link text-light fs-5">
+                        <a href="/mesas_mesera" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-table me-3"></i>
                                 <span class="d-none d-xl-inline">Mesas</span>
@@ -161,7 +161,7 @@
                         </a>
                     </li>
                     <li class="nav-item py-2">
-                        <a href="{{  route('mesera.clientes') }}" class="nav-link text-light fs-5">
+                        <a href="/clientes_mesera" class="nav-link text-light fs-5">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-user-check me-3"></i>
                                 <span class="d-none d-xl-inline">Clientes</span>

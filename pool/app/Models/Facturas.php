@@ -13,6 +13,7 @@ class Facturas extends Model
         'id_cliente',
         'id_vendedor',
         'total',
+        'estado',
         'hora_inicio',
         'hora_fin',
         'created_at',

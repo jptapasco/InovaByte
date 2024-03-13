@@ -34,15 +34,6 @@ class MesasSeeder extends Seeder
             'numero' => '3',
             'created_at' => now(),
             'updated_at' => now(),],
-
-            ['id_tipo_mesas' => '4',
-            'id_mesera_asignada' => null,
-            'id_cliente_asignado' => null,
-            'estado' => 'activo',
-            'numero' => '4',
-            'created_at' => now(),
-            'updated_at' => now(),],
-
         ]);
     }
 }
