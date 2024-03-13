@@ -108,7 +108,6 @@ class MesasAsignadas extends Component
 
         if($this->mesa_db->id_tipo_mesas != 3)
         {
-            dd($this->mesa_db);
             $time1 = Carbon::parse($this->factura->hora_inicio);
             $time2 = Carbon::parse(now());
             $this->diferencia_horas = $time1->diffInSeconds($time2);

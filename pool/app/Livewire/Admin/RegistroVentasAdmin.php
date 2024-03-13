@@ -15,7 +15,7 @@ class RegistroVentasAdmin extends Component
 {
     use ConsultaFacturas;
 
-    public $usuario_actual, $facturas, $id_factura, $datos_factura, $detalles_productos, $detalles_factura_detalles ,$nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $desde, $hasta, $cantidades_productos, $subtotales_productos;
+    public $usuario_actual, $facturas, $id_factura, $datos_factura, $detalles_productos, $detalles_factura_detalles ,$nombre_cliente_factura, $hora_inicio_factura, $hora_fin_factura, $desde, $hasta, $cantidades_productos, $subtotales_productos, $id_tipo_mesa;
     public function mount()
     {
         $this->usuario_actual = Auth::user();

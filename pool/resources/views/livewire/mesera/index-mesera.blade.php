@@ -37,15 +37,16 @@
                                 <td>{{ $factura->total }}</td>
                                 <td>{{ $factura->id_mesa }}</td>
                                 <td>{{ $factura->documento_cliente }}</td>
-                                @if ($factura->hora_inicio == null)
-                                    <td><button type="button" class="btn btn-success disabled">Ver Horas</button></td>
-                                @else
+                                @if ($factura->id_mesa != 3)
                                     <td><button type="button" class="btn btn-success"
                                             wire:click='actualizarIdFactura({{ $factura->id }}, 1)'>Ver Horas</button>
                                     </td>
+                                @else
+                                    <td><button type="button" class="btn btn-success disabled">Ver Horas</button></td>
                                 @endif
-                                <td><button type="button" class="btn btn-success"
+                                    <td><button type="button" class="btn btn-success"
                                         wire:click='actualizarIdFactura({{ $factura->id }}, 2)'>Detalles</button></td>
+                                        
                             </tr>
                         @endforeach
                     @endif

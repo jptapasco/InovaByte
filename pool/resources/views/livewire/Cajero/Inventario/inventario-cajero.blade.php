@@ -21,7 +21,6 @@
                         <th scope="col">Precio Venta</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Punto Reorden</th>
-                        <th scope="col">Agregar Cantidad</th>
                         <th scope="col">Editar Productos</th>
                     </tr>
                 </thead>
@@ -42,8 +41,6 @@
                                 <td>{{ $producto->precio_venta }}</td>
                                 <td>{{ $producto->cantidad }}</td>
                                 <td>{{ $producto->punto_reorden }}</td>
-                                <td><button type="button" class="btn btn-success"
-                                    wire:click='actualizarCantidadProducto({{ $producto->id }}, 1)'><i class="fa-solid fa-plus"></i></button></td>
                                 <td><button type="button" class="btn btn-success"
                                     wire:click='actualizarIdProducto({{ $producto->id }}, 1)'>Editar</button></td>
                             </tr>
