@@ -12,7 +12,7 @@ use Livewire\Component;
 class InventarioAdmin extends Component
 {
     use WithFileUploads;
-    public $usuario_actual,$imageData,$image, $productos, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
+    public $usuario_actual, $imageData, $imagen_producto, $productos, $id_producto, $datos_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $unidad_medida_producto, $precio_compra_producto, $precio_venta_producto, $punto_reorden_producto, $cantidad_producto, $search;
     
     public function mount()
     {
@@ -63,6 +63,7 @@ class InventarioAdmin extends Component
             'cantidad_producto.required' => 'Debe ingresar una cantidad',
             'cantidad_producto.numeric' => 'No se permiten letras o signos',
 
+
         ];
         $this->validate($rules, $messages);
 
@@ -79,7 +80,6 @@ class InventarioAdmin extends Component
     }
     public function store()
     {   
-        $this->imageData = base64_encode(File::get($this->image->getRealPath()));
         $rules = [
             'nombre_producto' => 'required',
             'descripcion_producto' => 'required',
@@ -89,6 +89,7 @@ class InventarioAdmin extends Component
             'precio_venta_producto' => 'required|numeric',
             'punto_reorden_producto' => 'required|numeric',
             'cantidad_producto' => 'required|numeric',
+            'imagen_producto' => 'required',
         ];
         $messages = [
             'nombre_producto.required' => 'Debe ingresar un nombre',
@@ -103,8 +104,11 @@ class InventarioAdmin extends Component
             'punto_reorden_producto.numeric' => 'No se permiten letras o signos',
             'cantidad_producto.required' => 'Debe ingresar una cantidad',
             'cantidad_producto.numeric' => 'No se permiten letras o signos',
-
+            'imagen_producto.required' => 'Debe ingresar una imagen',
         ];
+        if ($this->imageData) {
+            $this->imageData = base64_encode(File::get($this->imagen_producto->getRealPath()));
+        }
         $this->validate($rules, $messages);
 
         $this->datos_producto = Productos::create([

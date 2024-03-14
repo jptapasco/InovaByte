@@ -83,11 +83,14 @@
                 <input type="text" class="form-control" aria-label="Nombres" aria-describedby="puntoReordenProducto"
                     wire:model.blur="punto_reorden_producto" value="">
             </div>
-            <div wire:loading wire:target="image">
+            <div wire:loading wire:target="imagen_producto">
                 Subiendo...
             </div>
+            @error('imagen_producto')
+                <span class="text-danger er">{{ $message }}</span>
+            @enderror
             <div class="input-group mb-3">
-                <input type="file" class="form-control text-success" wire:model.live="image">
+                <input type="file" class="form-control text-success" wire:model.live="imagen_producto">
             </div>
 
         </div>
