@@ -109,4 +109,5 @@ trait ConsultaProductos
         session()->forget('productos_seleccionados');
         $this->dispatch('close-modal-chistoso');
     }
+
 }

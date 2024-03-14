@@ -16,16 +16,22 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $usuarioActual = Auth::user();
-        if ($usuarioActual->rol == 'admin') {
+        if ($usuarioActual->rol == 'admin' && $usuarioActual->estado == 'activo') {
             return redirect('dashboard_admin');
+        }else if($usuarioActual->rol == 'admin'){
+            return abort('403');
         }
 
-        if ($usuarioActual->rol == 'cajero') {
+        if ($usuarioActual->rol == 'cajero' && $usuarioActual->estado == 'activo') {
             return redirect('dashboard_cajero');
+        }else if($usuarioActual->rol == 'cajero'){
+            return abort('403');
         }
 
-        if ($usuarioActual->rol == 'mesera') {
+        if ($usuarioActual->rol == 'mesera' && $usuarioActual->estado == 'activo') {
             return redirect('dashboard_mesera');
+        }else if($usuarioActual->rol == 'mesera'){
+            return abort('403');
         }
     }
 }

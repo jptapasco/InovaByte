@@ -30,9 +30,9 @@
                                 <td>{{ $mesas_asignadas[$mesera->id] }}</td>
                                 <td>
                                     @if ($mesera->estado == 'activo' && $mesas_asignadas[$mesera->id] > 0)
-                                        <button type="button" class="btn btn-info btn-accion" wire:click='cargarMesasMesera({{ $mesera->id }})'>Ver</button></td>
+                                        <button type="button" class="btn btn-success btn-accion" wire:click='cargarMesasMesera({{ $mesera->id }})'>Ver</button></td>
                                     @else
-                                        <button class="btn btn-info btn-accion" disabled>Ver</button>
+                                        <button class="btn btn-success btn-accion" disabled>Ver</button>
                                     @endif
                                 </td>
                                 <td>

@@ -15,11 +15,11 @@ class DashboardAdmin extends Component
     public function mount()
     {
         $this->usuario_actual = Auth::user();
-        $this->fondos_dia = PlataCajeros::where('estado', 'activo')->first();
-        $this->fondos_dia_anterior = PlataCajeros::find(PlataCajeros::max('id'));
     }
     public function render()
     {
+        $this->fondos_dia = PlataCajeros::where('estado', 'activo')->first();
+        $this->fondos_dia_anterior = PlataCajeros::find(PlataCajeros::max('id'));
         if($this->usuario_actual == null){
             return abort('403');
         }else if ($this->usuario_actual->rol != 'admin') {

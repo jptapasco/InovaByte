@@ -72,6 +72,7 @@ trait ConsultaFacturas
                 $this->subtotales_productos[] = $detalle_factura->subtotal;
             }
             $this->dispatch('show-modal-ver-detalles');
+
         }
 
     }

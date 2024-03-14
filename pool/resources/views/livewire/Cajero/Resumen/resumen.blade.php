@@ -7,16 +7,6 @@
                 Dinero de ventas:
                 <span style="color: green;">${{ $detalles_factura->sum('subtotal') }}</span>
             </h2>
-            <h2>
-                Dinero en caja:
-                <span style="color: green;">
-                    ${{ 
-                        $detalles_factura->filter(function($detalle) use ($facturas_con_mesas) {
-                            return isset($facturas_con_mesas[$detalle->id_factura]) && $facturas_con_mesas[$detalle->id_factura] == '1';
-                        })->sum('subtotal') 
-                    }}
-                </span>
-            </h2>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
             <table class="table table-bordered table-success border-success text-center">

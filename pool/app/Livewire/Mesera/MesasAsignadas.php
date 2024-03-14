@@ -130,6 +130,17 @@ class MesasAsignadas extends Component
     }
     public function resetUI()
     {
-        
+        $this->resetValidation();
+        $this->datos_producto = null;
+        $this->nombre_producto = null;
+        $this->descripcion_producto = null;
+        $this->categoria_producto = null;
+        $this->unidad_medida_producto = null;
+        $this->precio_compra_producto = null;
+        $this->precio_venta_producto = null;
+        $this->punto_reorden_producto = null;
+        $this->cantidad_producto = null;
+        $this->cantidad_agregada = null;
+        $this->productosSeleccionados = [];
     }
 }
